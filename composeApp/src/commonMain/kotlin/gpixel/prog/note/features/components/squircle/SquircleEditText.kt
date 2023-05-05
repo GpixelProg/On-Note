@@ -3,7 +3,6 @@ package gpixel.prog.note.features.components.squircle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -13,7 +12,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
@@ -29,11 +27,11 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Created by Maksym Stanislavenko - GpixelProg.
- * The Squircle Button is a custom button that has a squircle shape.
+ * The Squircle TextField is a custom button that has a squircle shape.
  */
 
 @Composable
-fun SquircleButton(
+fun SquircleTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
