@@ -1,7 +1,9 @@
 package gpixel.prog.note
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,7 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -27,73 +31,46 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import cafe.adriel.voyager.transitions.FadeTransition
+import cafe.adriel.voyager.transitions.ScaleTransition
+import cafe.adriel.voyager.transitions.SlideTransition
 import gpixel.prog.note.features.components.squircle.SquircleTextField
 import gpixel.prog.note.features.components.squircle.SquircleShape
+import gpixel.prog.note.ui.PreviewScreen
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun App() = AppTheme {
+    Box(Modifier.background(brush = gradient_background).fillMaxSize()) {
+        Navigator(PreviewScreen) { navigator ->
+            SlideTransition(navigator)
+//        FadeTransition(navigator)
+//        ScaleTransition(navigator)
+        }
+    }
+}
 
-    val keyController = LocalSoftwareKeyboardController.current
+object HomeScreen : Screen {
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures {
-                    keyController?.hide()
-                }
-            }
-            .background(brush = gradient_background)
-    ) {
-        SquircleShape(
-            modifier = Modifier.height(200.dp).width(200.dp).padding(20.dp),
-            radius = 20.dp,
-            fillColor = Color(0xFF2B2639),
-            strokeColor = Color(0xFFC4C4C4),
-            strokeWidth = 2.dp,
-        )
-
-        var text2 by remember { mutableStateOf("") }
-
-        TextField(
-            value = text2,
-            onValueChange = { text2 = it },
-            modifier = Modifier.fillMaxWidth().padding(20.dp),
-            textStyle = LocalTextStyle.current.copy(
-                color = Color.White,
-                fontSize = 16.sp,
-                textDecoration = TextDecoration.None
-            ),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-                cursorColor = Color.White,
-                focusedIndicatorColor = Color(0xFF2B2639),
-                unfocusedIndicatorColor = Color(0xFF2B2639),
-                disabledIndicatorColor = Color.Transparent,
-            ),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done
-            ),
-        )
-
-        var value by remember { mutableStateOf("") }
-
-        SquircleTextField(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp)
-                .height(40.dp),
-            value = value,
-            onValueChange = {
-                value = it
-                if (value.last() == '\n') {
-                    value = value.dropLast(1)
-                    keyController?.hide()
-                }
-            },
-        )
+                .fillMaxSize()
+                .background(brush = gradient_background)
+        ) {
+            Button(
+                onClick = {
+                    navigator.push(PreviewScreen)
+                },
+            ) {
+                Text("Create Account")
+            }
+        }
     }
 }

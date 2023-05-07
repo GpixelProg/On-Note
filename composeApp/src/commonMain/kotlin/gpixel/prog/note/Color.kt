@@ -76,3 +76,5 @@ internal val gradient_background = linearGradient(
     0f to Color(0xFF5D5968),
     1f to Color(0xFF2A2538)
 )
+
+internal val orangeColor = Color(0xFFDC3737)

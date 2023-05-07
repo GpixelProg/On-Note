@@ -38,12 +38,19 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(libs.libres)
-                implementation(libs.voyager.navigator)
+//                implementation(libs.voyager.navigator)
                 implementation(libs.napier)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.composeIcons.featherIcons)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kstore)
+
+                //Navigation
+                val voyagerVersion = "1.0.0-rc05"
+                // Navigator
+                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+                // Transitions
+                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
             }
         }
 
@@ -117,4 +124,8 @@ dependencies {
 
 libres {
     // https://github.com/Skeptick/libres#setup
+    generatedClassName = "MainRes" // "Res" by default
+    generateNamedArguments = true // false by default
+    baseLocaleLanguageCode = "en" // "en" by default
+    camelCaseNamesForAppleFramework = true // false by default
 }
