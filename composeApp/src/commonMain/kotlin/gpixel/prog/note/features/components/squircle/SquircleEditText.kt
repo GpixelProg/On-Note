@@ -43,7 +43,7 @@ fun SquircleTextField(
         textDecoration = TextDecoration.None
     ),
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(
-        keyboardType = KeyboardType.Password,
+        keyboardType = KeyboardType.Text,
         imeAction = ImeAction.Done
     ),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -56,7 +56,7 @@ fun SquircleTextField(
     placeholderTextSize: TextUnit = 16.sp,
     placeholderTextColor: Color = Color.Gray,
     placeholderFontFamily: FontFamily = textStyle.fontFamily ?: FontFamily.Default,
-    shapeRadius: Dp = 8.dp,
+    shapeRadius: Dp = 5.dp,
     shapeFillColor: Color = Color(0xFF2B2639),
     shapeStrokeColor: Color = Color(0xFFC4C4C4),
     shapeStrokeWidth: Dp = 2.dp,
