@@ -38,12 +38,11 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(libs.libres)
-//                implementation(libs.voyager.navigator)
                 implementation(libs.napier)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.composeIcons.featherIcons)
                 implementation(libs.kotlinx.datetime)
-                implementation(libs.kstore)
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
                 //Navigation
                 val voyagerVersion = "1.0.0-rc05"

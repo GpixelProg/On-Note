@@ -7,12 +7,12 @@ androidx-appcompat = "1.6.1"
 androidx-activityCompose = "1.7.0"
 compose-uitooling = "1.4.1"
 libres = "1.1.8"
-voyager = "1.0.0-rc04"
+voyager = "1.0.0-rc05"
 napier = "2.6.1"
 kotlinx-coroutines = "1.6.4"
 composeIcons = "1.1.0"
 kotlinx-datetime = "0.4.0"
-kstore = "0.5.0"
+kstore = "0.6.0"
 
 [libraries]
 
