@@ -27,8 +27,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import gpixel.prog.note.features.components.squircle.SquircleShape
-import gpixel.prog.note.features.components.squircle.SquircleTextField
+import gpixel.prog.note.ui.components.squircle.SquircleShape
+import gpixel.prog.note.ui.components.squircle.SquircleTextField
 import gpixel.prog.note.gradient_background
 
 @OptIn(ExperimentalComposeUiApi::class)

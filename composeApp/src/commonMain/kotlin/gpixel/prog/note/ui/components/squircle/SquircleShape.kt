@@ -1,4 +1,4 @@
-package gpixel.prog.note.features.components.squircle
+package gpixel.prog.note.ui.components.squircle
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box

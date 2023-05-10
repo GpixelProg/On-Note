@@ -12,7 +12,10 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.navigator.NavigatorDisposeBehavior
 import cafe.adriel.voyager.navigator.currentOrThrow
+import cafe.adriel.voyager.transitions.FadeTransition
+import cafe.adriel.voyager.transitions.ScaleTransition
 import cafe.adriel.voyager.transitions.SlideTransition
 import gpixel.prog.note.ui.CreateAccount
 import gpixel.prog.note.ui.PreviewScreen
@@ -21,7 +24,9 @@ import gpixel.prog.note.ui.PreviewScreen
 @Composable
 internal fun App() = AppTheme {
     Box(Modifier.background(brush = gradient_background).fillMaxSize()) {
-        Navigator(CreateAccount) { navigator ->
+        Navigator(
+            screen = PreviewScreen,
+        ) { navigator ->
             SlideTransition(navigator)
 //        FadeTransition(navigator)
 //        ScaleTransition(navigator)

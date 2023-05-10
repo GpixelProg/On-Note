@@ -17,7 +17,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -35,28 +34,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.core.stack.popUntil
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import gpixel.prog.note.MainRes
-import gpixel.prog.note.features.components.squircle.SquircleTextField
+import gpixel.prog.note.ui.components.squircle.SquircleTextField
 import gpixel.prog.note.orangeColor
+import gpixel.prog.note.ui.components.returnImeAction
 import gpixel.prog.note.view_models.CreateAccountModel
 import io.github.skeptick.libres.compose.painterResource
-
-/**
- * TODO Ime Action on iOS is not working yet but
- * working other features like keyboard type '\n'
- */
-fun returnImeAction(value: MutableState<String>, content: () -> Unit) {
-    if (value.value.last() == '\n') {
-        value.value = value.value.dropLast(1)
-        content()
-    }
-}
 
 object CreateAccount : Screen {
     @OptIn(ExperimentalComposeUiApi::class)
     @Composable
     override fun Content() {
-        val createAccountModel = rememberScreenModel { CreateAccountModel() }
+        val navigator = LocalNavigator.currentOrThrow
+        val createAccountModel = rememberScreenModel { CreateAccountModel(navigator) }
         val keyController = LocalSoftwareKeyboardController.current
         val focusManager = LocalFocusManager.current
 
@@ -97,7 +90,7 @@ object CreateAccount : Screen {
                 Text(
                     text = "Sign In",
                     modifier = Modifier
-                        .clickable {  }
+                        .clickable { createAccountModel.onLogin() }
                         .padding(start = 5.dp),
                     fontSize = 14.sp,
                     color = orangeColor,
