@@ -3,8 +3,6 @@ package gpixel.prog.note.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,7 +38,6 @@ import cafe.adriel.voyager.core.screen.Screen
 import gpixel.prog.note.MainRes
 import gpixel.prog.note.features.components.squircle.SquircleTextField
 import gpixel.prog.note.orangeColor
-import gpixel.prog.note.platform.getTopPadding
 import gpixel.prog.note.view_models.CreateAccountModel
 import io.github.skeptick.libres.compose.painterResource
 
@@ -107,6 +104,18 @@ object CreateAccount : Screen {
                 )
             }
 
+            //Error message
+            if (createAccountModel.errorMsg.isNotEmpty()) {
+                Text(
+                    text = createAccountModel.errorMsg,
+                    modifier = Modifier
+                        .padding(top = 10.dp)
+                        .align(alignment = Alignment.CenterHorizontally),
+                    fontSize = 14.sp,
+                    color = Color.Red,
+                )
+            }
+
             Column(modifier = Modifier.padding(top = 20.dp)) {
                 Text(
                     text = "Email",
@@ -146,7 +155,12 @@ object CreateAccount : Screen {
 
                 SquircleTextField(
                     value = createAccountModel.password.value,
-                    onValueChange = { createAccountModel.password.value = it },
+                    onValueChange = {
+                        createAccountModel.password.value = it
+                        returnImeAction(createAccountModel.password) {
+                            focusManager.moveFocus(FocusDirection.Next)
+                        }
+                    },
                     placeholderText = "Enter your password",
                     modifier = Modifier
                         .padding(top = 5.dp)
@@ -171,7 +185,13 @@ object CreateAccount : Screen {
 
                 SquircleTextField(
                     value = createAccountModel.confirmPassword.value,
-                    onValueChange = { createAccountModel.confirmPassword.value = it },
+                    onValueChange = {
+                        createAccountModel.confirmPassword.value = it
+                        returnImeAction(createAccountModel.confirmPassword) {
+                            keyController?.hide()
+                            createAccountModel.createAccount()
+                        }
+                    },
                     placeholderText = "Confirm your password",
                     modifier = Modifier
                         .padding(top = 5.dp)
@@ -182,13 +202,13 @@ object CreateAccount : Screen {
                         imeAction = ImeAction.Done
                     ),
                     keyboardActions = KeyboardActions(
-                        onNext = {  }
+                        onNext = { createAccountModel.createAccount() }
                     ),
                     visualTransformation = PasswordVisualTransformation()
                 )
 
                 Button(
-                    onClick = {  },
+                    onClick = { createAccountModel.createAccount() },
                     modifier = Modifier
                         .padding(top = 20.dp)
                         .height(40.dp)
