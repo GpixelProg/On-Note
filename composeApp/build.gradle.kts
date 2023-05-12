@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.cocoapods)
     alias(libs.plugins.android.application)
     alias(libs.plugins.libres)
+    id("io.realm.kotlin") version "1.8.0"
 }
 
 kotlin {
@@ -43,6 +44,9 @@ kotlin {
                 implementation(libs.composeIcons.featherIcons)
                 implementation(libs.kotlinx.datetime)
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+                // Realm DB
+                implementation("io.realm.kotlin:library-base:1.8.0")
 
                 //Navigation
                 val voyagerVersion = "1.0.0-rc05"
