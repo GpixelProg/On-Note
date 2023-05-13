@@ -2,9 +2,9 @@ package gpixel.prog.note.data.db_model
 
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
+import org.mongodb.kbson.ObjectId
 
-class PreviewStatusModel(): RealmObject {
+class UserSessionModel : RealmObject {
     @PrimaryKey
-    var id: String = "isPreview"
-    var isPreview: Boolean = false
+    var _id: ObjectId = ObjectId()
 }

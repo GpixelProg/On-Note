@@ -11,6 +11,6 @@ class NoteModel: RealmObject {
     var _id: ObjectId = ObjectId()
     var userId: ObjectId = ObjectId()
     var note: String = ""
-    var checklist: RealmSet<CheckItem> = realmSetOf()
+    var checklist: RealmSet<CheckItemModel> = realmSetOf()
     var dateInstant: Long = 0
 }
