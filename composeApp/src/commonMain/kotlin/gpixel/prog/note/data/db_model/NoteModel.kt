@@ -10,6 +10,7 @@ class NoteModel: RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
     var userId: ObjectId = ObjectId()
+    var title: String = ""
     var note: String = ""
     var checklist: RealmSet<CheckItemModel> = realmSetOf()
     var dateInstant: Long = 0
